@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -7,5 +8,8 @@ namespace API.Controllers
     [ApiController]
     public class BaseApiController : ControllerBase
     {
+        private IMediator _medaitor;
+
+        protected IMediator Mediator => _medaitor ??= HttpContext.RequestServices.GetService<IMediator>();
     }
 }
